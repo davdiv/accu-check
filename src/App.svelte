@@ -20,6 +20,18 @@
 </script>
 
 <div class="container">
+  <h2 class="mt-3">Accu-Chek</h2>
+  {#if navigator.usb}
+    <button
+      type="button"
+      class="btn btn-primary mt-3"
+      on:click={callReadFromDevice}
+      >Extraire depuis le périphérique Accu-Chek</button
+    >
+  {:else}
+    Votre navigateur ne permet pas de se connecter à un périphérique Accu-Chek
+    par connexion USB. Vous pourriez essayer d'utiliser Chrome ou Chromium.
+  {/if}
   <div class="mt-3">
     <label for="formFile" class="form-label">Ouvrir un fichier JSON</label>
     <input
@@ -29,16 +41,6 @@
       on:change={onFileChange}
     />
   </div>
-
-  {#if navigator.usb}
-    <button
-      type="button"
-      class="btn btn-primary mt-3"
-      on:click={callReadFromDevice}
-      >Extraire depuis le périphérique Accu-Chek</button
-    >
-  {/if}
-
   {#if $data$}
     <a
       class="btn btn-outline-secondary mt-3"
