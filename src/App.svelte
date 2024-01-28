@@ -21,6 +21,19 @@
 
 <div class="container">
   <h2 class="mt-3">Accu-Chek</h2>
+  <p>
+    Cette application web permet d'extraire les données de glycémie mesurées par
+    un appareil <a href="https://www.accu-chek.fr/lecteurs-de-glycemie/guide"
+      >Accu-Chek</a
+    > connecté en USB et de les afficher sous forme graphique et sous forme de liste
+    de mesures, avec la possibilité de les enregistrer au format JSON ou CSV. Il
+    est possible aussi de recharger les données précédemment enregistrées au format
+    JSON.
+  </p>
+  <p>
+    Les données sont traitées directement dans le navigateur web en local et ne
+    sont en aucun cas envoyées à un quelconque serveur sur internet.
+  </p>
   {#if navigator.usb}
     <button
       type="button"
@@ -29,8 +42,10 @@
       >Extraire depuis le périphérique Accu-Chek</button
     >
   {:else}
-    Votre navigateur ne permet pas de se connecter à un périphérique Accu-Chek
-    par connexion USB. Vous pourriez essayer d'utiliser Chrome ou Chromium.
+    <p>
+      Votre navigateur ne permet pas de se connecter à un périphérique Accu-Chek
+      par connexion USB. Vous pourriez essayer d'utiliser Chrome ou Chromium.
+    </p>
   {/if}
   <div class="mt-3">
     <label for="formFile" class="form-label">Ouvrir un fichier JSON</label>
