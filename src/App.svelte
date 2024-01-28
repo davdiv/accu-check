@@ -6,9 +6,11 @@
     callReadFromDevice,
     callReadFromFile,
     data$,
+    dataPromise$,
     jsonBlobURL$,
     csvBlobURL$,
     fileName$,
+    reset,
   } from "./data";
   const formatDate = (date: string) =>
     format(parseISO(date), "dd MMM yyyy h'h'mm", { locale: fr });
@@ -34,28 +36,45 @@
     Les données sont traitées directement dans le navigateur web en local et ne
     sont en aucun cas envoyées à un quelconque serveur sur internet.
   </p>
-  {#if navigator.usb}
+  {#if $dataPromise$}
     <button
       type="button"
-      class="btn btn-primary mt-3"
-      on:click={callReadFromDevice}
-      >Extraire depuis le périphérique Accu-Chek</button
+      class="btn btn-outline-secondary mt-3"
+      on:click={reset}>Réinitialiser</button
     >
   {:else}
-    <p>
-      Votre navigateur ne permet pas de se connecter à un périphérique Accu-Chek
-      par connexion USB. Vous pourriez essayer d'utiliser Chrome ou Chromium.
-    </p>
+    {#if navigator.usb}
+      <button
+        type="button"
+        class="btn btn-primary mt-3"
+        on:click={callReadFromDevice}
+        >Extraire depuis le périphérique Accu-Chek</button
+      >
+    {:else}
+      <div class="alert alert-warning mt-3">
+        Votre navigateur ne permet pas de se connecter à un périphérique
+        Accu-Chek par connexion USB. Vous pourriez essayer d'utiliser Chromium,
+        Chrome, Edge ou Opera.
+      </div>
+    {/if}
+    <div class="mt-3">
+      <label for="formFile" class="form-label">Ouvrir un fichier JSON</label>
+      <input
+        class="form-control"
+        type="file"
+        id="formFile"
+        on:change={onFileChange}
+      />
+    </div>
   {/if}
-  <div class="mt-3">
-    <label for="formFile" class="form-label">Ouvrir un fichier JSON</label>
-    <input
-      class="form-control"
-      type="file"
-      id="formFile"
-      on:change={onFileChange}
-    />
-  </div>
+  {#await $dataPromise$}
+    <div class="alert alert-info mt-3">Chargement..</div>
+  {:catch error}
+    <div class="alert alert-danger mt-3">
+      Une erreur s'est produite:<br />
+      <pre>{error}</pre>
+    </div>
+  {/await}
   {#if $data$}
     <a
       class="btn btn-outline-secondary mt-3"

@@ -2,9 +2,9 @@ import { computed, writable } from "@amadeus-it-group/tansu";
 import { readFromDevice } from "./readUSBData";
 import { resolveStorePromise, toBlobURL } from "./storeUtils";
 
-const dataPromise$ = writable<ReturnType<typeof readFromDevice> | undefined>(
-  undefined
-);
+export const dataPromise$ = writable<
+  ReturnType<typeof readFromDevice> | undefined
+>(undefined);
 
 export const data$ = resolveStorePromise(dataPromise$);
 export const jsonBlob$ = computed(
@@ -36,7 +36,17 @@ export const fileName$ = computed(() => {
 });
 
 export async function callReadFromDevice() {
-  dataPromise$.set(readFromDevice());
+  const promise = readFromDevice();
+  dataPromise$.set(promise);
+  try {
+    await promise;
+  } catch (error: any) {
+    if (error.name === "NotFoundError") {
+      if (dataPromise$() === promise) {
+        dataPromise$.set(undefined);
+      }
+    }
+  }
 }
 
 const readFile = (file: File) =>
@@ -59,4 +69,8 @@ const asyncOpenFile = async (file: File | null) => {
 
 export function callReadFromFile(file: File | null) {
   dataPromise$.set(asyncOpenFile(file));
+}
+
+export function reset() {
+  dataPromise$.set(undefined);
 }
