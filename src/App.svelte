@@ -26,8 +26,9 @@
   <h2 class="mt-3"><img class="logo" src="./logo.svg" /> Accu-Chek</h2>
   <p>
     Cette application web permet d'extraire les données de glycémie mesurées par
-    un appareil <a href="https://www.accu-chek.fr/lecteurs-de-glycemie/guide"
-      >Accu-Chek</a
+    un appareil <a
+      target="_blank"
+      href="https://www.accu-chek.fr/lecteurs-de-glycemie/guide">Accu-Chek</a
     > connecté en USB et de les afficher sous forme graphique et sous forme de liste
     de mesures, avec la possibilité de les enregistrer au format JSON ou CSV. Il
     est possible aussi de recharger les données précédemment enregistrées au format
@@ -117,8 +118,9 @@
   {/if}
   <div class="mt-3 text-body-secondary">
     <small
-      >Le <a href="https://github.com/davdiv/accu-check">code source</a> de ce programme
-      est disponible.</small
+      >Le <a target="_blank" href="https://github.com/davdiv/accu-check"
+        >code source</a
+      > de ce programme est disponible.</small
     >
   </div>
 </div>
