@@ -22,7 +22,8 @@
 </script>
 
 <div class="container">
-  <h2 class="mt-3">Accu-Chek</h2>
+  <!-- svelte-ignore a11y-missing-attribute -->
+  <h2 class="mt-3"><img class="logo" src="./logo.svg" /> Accu-Chek</h2>
   <p>
     Cette application web permet d'extraire les données de glycémie mesurées par
     un appareil <a href="https://www.accu-chek.fr/lecteurs-de-glycemie/guide"
@@ -121,3 +122,10 @@
     >
   </div>
 </div>
+
+<style>
+  .logo {
+    width: 3em;
+    height: 3em;
+  }
+</style>
