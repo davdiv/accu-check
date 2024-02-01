@@ -1,4 +1,4 @@
-# accu-check
+# Accu-Chek
 
 Ce programme permet d'extraire les données de glycémie mesurées par un appareil [Accu-Chek](https://www.accu-chek.fr/lecteurs-de-glycemie/guide) connecté en USB (avec l'[API WebUSB](https://wicg.github.io/webusb/)) et de les afficher sous forme graphique (avec [Chart.js](https://www.chartjs.org/)) et sous forme de liste de mesures, avec la possibilité de les enregistrer au format JSON ou CSV. Il est possible aussi de recharger les données précédemment enregistrées au format JSON.
 
