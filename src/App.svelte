@@ -118,7 +118,7 @@
   {/if}
   <div class="mt-3 text-body-secondary">
     <small
-      >Le <a target="_blank" href="https://github.com/davdiv/accu-check"
+      >Le <a target="_blank" href="https://github.com/davdiv/accu-chek"
         >code source</a
       > de ce programme est disponible.</small
     >
